@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MainController
+class MainController extends AbstractController
 {
     #[Route('/')]
-    public function homePage(): Response
+    public function home(): Response
     {
-        return new Response('Title ');
+        return $this->render('main/home.html.twig',[
+            'name' => 'Phoner',
+        ]);
     }
 
     #[Route('/search/{search}')]
