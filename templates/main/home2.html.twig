@@ -2,12 +2,6 @@
 {% block title %}Home | {{parent()}} {% endblock %}
 {% block body %}
 
-{% for login in app.flashes('login') %}
-    <div class="flash-login">
-        {{ login }}
-    </div>
-{% endfor %}
-
 <div data-controller="click">
     <button class="btn btn-primary btn-sm" data-action="click->click#incrementar">Click me</button>
     Has hecho <span data-click-target='count'>0</span> clicks
