@@ -1,27 +1,18 @@
 <?php
+
 namespace App\Controller;
 
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('api/product/{id<\d+>}', methods: ['GET'])]
-    public function getProduct(int $id, LoggerInterface $logger): Response
+    #[Route('/product', name: 'app_product')]
+    public function index(): Response
     {
-        $product=[
-            'id' => $id,
-            'brand' => 'apple',
-            'name' => 'iphone 13'
-        ];
-
-        $logger->info("RETURNING PRODUCT {product} WITH ID {id}",[
-            'product' => $product['name'],
-            'id' => $id
+        return $this->render('product/index.html.twig', [
+            'controller_name' => 'ProductController',
         ]);
-
-        return $this->json($product);
     }
 }

@@ -41,4 +41,5 @@ class MainController extends AbstractController
 
     // return JsonResponse($a) || $this->json()
     // debug:autowiring para revisar los servicios
+    // npm run watch      assets/app.js importar todos los archivos en este documento
 }
