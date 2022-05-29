@@ -21,18 +21,18 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Las contraseñas no coinciden',
                 'first_options'  => ['label' => 'Contraseña'],
                 'second_options' => ['label' => 'Repetir Contraseña'],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Introduzca una contraseña',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'La contraseña tiene que tener al menos {{ limit }} carácteres',
                         'max' => 4096,
                     ]),
                 ],
