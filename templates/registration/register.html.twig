@@ -2,21 +2,66 @@
 
 {% block title %}Register{% endblock %}
 
+{% block stylesheets %}
+{{ encore_entry_link_tags('login') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ encore_entry_script_tags('login') }}
+{% endblock %}
+
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+					<h6 class="mb-0 pb-3"><a href="{{ path('app_login') }}"><span>Inicio Sesión</span></a><a href="{{ path('app_register') }}"><span>Registro</span></a></h6>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Crear cuenta</h4>
+                                        {{ form_start(registrationForm) }}
+                                        <div class="form-group">
+                                            {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form-style', 'placeholder':'Nombre', 'autocomplete':'off' }} ) }}
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-style', 'placeholder':'Apellidos', 'autocomplete':'off' }} ) }}
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-style', 'placeholder':'Email', 'autocomplete':'off' }} ) }}
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>	
+                                        <div class="form-group mt-2">
+                                            {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-style', 'placeholder':'Contraseña', 'autocomplete':'off' }} ) }}
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-style', 'placeholder':'Repite la contraseña', 'autocomplete':'off' }} ) }}
+                                            <i class="input-icon uil uil-lock-alt"></i>
+                                        </div>
+                                        <button type="submit" class="btn mt-4">Crear</button>
+                                        {{ form_end(registrationForm) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+    
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    
 {% endblock %}
