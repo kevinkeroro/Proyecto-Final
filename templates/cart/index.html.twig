@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carrito{% endblock %}
+{% block body %}
+<h1>Carrito</h1>
+{# <div class=""> #}
+{% if items | length > 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Modelo</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.model }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.product.price }}€</td>
+                <td>{{ item.product.price * item.quantity }}€</td>
+                <td>
+                    <a href="{{ path('cart_delete', {id : item.product.id}) }}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right">Total: </td>
+                <td>{{ total }}€</td>
+                <td></td>
+            </tr>
+        </tfoot>
+
+    </table>
+{% else %}
+
+{% endif %}
+{% endblock %}

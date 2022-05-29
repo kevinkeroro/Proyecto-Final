@@ -18,7 +18,7 @@
                         <label for="quantity">Quantity</label>
                         <input type="number" class="form-control" id="quantity">
                     </div>
-                    <button class="btn btn-warning">Add to Cart</button>
+                    <a class="btn btn-warning" href="{{ path('cart_add', {id: product.id}) }}">Add to Cart</a>
                 </form>
             </div>
         </div>
