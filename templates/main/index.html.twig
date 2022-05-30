@@ -6,17 +6,17 @@
     <div class="row">
         {% for product in products %}
             <div class="col-md-4">
+            <a href="{{ path('app_product', {id: product.id}) }} " class="text-decoration-none">
                 <div class="card mb-4">
-                    <img src="https://via.placeholder.com/200x150" alt="{{ product.name }}" class="card-img-top">
+                    <img class="img-responsive" src="{{ asset(product.banner) }}" alt="{{ product.name }}" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
                         <div class="d-flex justify-content-between align-item-center">
-                            <a href="{{ path('app_product', {id: product.id}) }}" class="btn btn-dark">View details</a>
+                            <h5 class="card-title">{{ product.name }}</h5>
                             <span class="h5 mt-auto">{{ product.price }} €</span>
                         </div>
                     </div>
                 </div>
+            </a>
             </div>
         {% endfor %}
     </div>

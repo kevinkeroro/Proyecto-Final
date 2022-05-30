@@ -25,6 +25,15 @@ class Product
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $banner;
+
+    #[ORM\Column(type: 'integer')]
+    private $stock;
+
+    #[ORM\Column(type: 'array')]
+    private $images = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +83,42 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBanner(): ?string
+    {
+        return $this->banner;
+    }
+
+    public function setBanner(string $banner): self
+    {
+        $this->banner = $banner;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getImages(): ?array
+    {
+        return $this->images;
+    }
+
+    public function setImages(array $images): self
+    {
+        $this->images = $images;
 
         return $this;
     }
