@@ -9,12 +9,18 @@
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
               crossorigin="anonymous">
         {% block stylesheets %}
-          {{ encore_entry_link_tags('app') }}  
+          {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
          {{ encore_entry_script_tags('app') }}   
         {% endblock %}
+
+        {% set totalProducts = 0 %}
+        {% set carrito = app.session.get('cart') %}
+        {% for product in carrito %}
+            {% set totalProducts = totalProducts + product %}
+        {% endfor %}
     </head>
     <body>
     {% block header %}
@@ -31,12 +37,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
+                    <li>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li>
                 </ul>
-                <a href="{{ path('app_cart') }}" class="btn btn-info">Carrito</a>
-                {# <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form> #}
+                <a href="{{ path('app_cart') }}" class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Carrito
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">
+                    {{ totalProducts }}
+                    </span>
+                </a>
                 {% if  is_granted('ROLE_USER') %}
                 <a href="{{ path('app_logout') }}" class="btn btn-dark ml-2">Logout</a>
                 {% else %}
