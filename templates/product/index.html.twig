@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ product.name }}{% endblock %}
-
 {% block body %}
     <div class="container">
         <div class="row mt-3 mb-4">
@@ -15,12 +14,35 @@
                 <b>Description: </b>{{ product.description }}
                 <form class="mt-4 p-4 bg-light" method="post">
                     <div class="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" id="quantity">
+                        <label for="quantity">Cantidad</label>
+                        <input type="number" class="form-control" id="quantity" value="1" onchange="changeQuantity()">
                     </div>
-                    <a class="btn btn-warning" href="{{ path('cart_add', {id: product.id}) }}">Add to Cart</a>
+                    <a class="btn btn-warning" id="add" href="{{ path('cart_add', {id: product.id, quantity:1 }) }}">Añadir a la cesta</a>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        function changeQuantity(){
+            var order_quantity = document.getElementById('quantity').value;
+            var regex = new RegExp(/\d+/);
+            let route = document.getElementById('add').getAttribute('href');
+            route = route.split("/");
+            route[4] = order_quantity;
+            route = route.join("/")
+            document.getElementById('add').setAttribute('href',route);
+            console.log(order_quantity);
+
+            //AJAX FALTA TERMINAR
+            /*if(regex.test(order_quantity)){
+                $.ajax({
+                  url: route,
+                  method: "POST"
+
+                }).done(function (resp) {
+                });
+            }*/
+        }
+
+    </script>
 {% endblock %}

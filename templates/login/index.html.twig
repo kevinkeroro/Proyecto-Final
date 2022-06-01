@@ -11,31 +11,14 @@
 {% endblock %}
 
 {% block body %}
-
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
     {# TODO CHANGE COLOR FLASH AND A NEW FLASH WHEN A USER IN NOT VERIFIED #}
     {% for flash_error in app.flashes('success') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    {# <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
-        <input type="hidden" name="_target_path" value="/"/>
-        <button type="submit">login</button>
-    </form> #}
-
-    <a href="https://front.codes/" class="logo" target="_blank">
-    <img src="https://assets.codepen.io/1462889/fcy.png" alt="">
-	</a>
-
 	<div class="section">
 		<div class="container">
-			<div class="row full-height justify-content-center">
+			<div class="row justify-content-center">
 				<div class="col-12 text-center align-self-center py-5">
 					<div class="section pb-5 pt-5 pt-sm-2 text-center">
 						<h6 class="mb-0 pb-3"><a href="{{ path('app_login') }}"><span>Inicio Sesión</span></a><a href="{{ path('app_register') }}"><span>Registro</span></a></h6>
@@ -54,8 +37,11 @@
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
                                             <input type="hidden" name="_target_path" value="/"/>
-											<button type="submit" class="btn mt-4">Acceder</button>
-                            				{# <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Forgot your password?</a></p> #}
+											
+											{% if error %}
+												<div class="mt-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+											{% endif %}
+											<button type="submit" class="btn btn-outline-dark mt-4">Acceder</button>
 				      					</form>
 			      					</div>
 			      				</div>

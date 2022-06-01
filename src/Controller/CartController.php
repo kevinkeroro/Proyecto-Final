@@ -37,15 +37,20 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/add/{id}', name:'cart_add')]
-    public function add($id, SessionInterface $session): Response
+    #[Route('/cart/add/{id}/{quantity}', name:'cart_add')]
+    public function add($id, SessionInterface $session, $quantity): Response
     {
         $cart = $session->get('cart', []);
 
         if(!empty($cart[$id])){
-            $cart[$id]++;
+            if($quantity == 1){
+                $cart[$id]++;
+            }else{
+                $cart[$id]+=(int)$quantity;
+            }
+            
         }else{
-            $cart[$id] = 1;
+            $cart[$id] = $quantity;
         }
         
         $session->set('cart', $cart);
