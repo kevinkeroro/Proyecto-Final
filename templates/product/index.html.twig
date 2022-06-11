@@ -15,7 +15,7 @@
                 <form class="mt-4 p-4 bg-light" method="post">
                     <div class="form-group">
                         <label for="quantity">Cantidad</label>
-                        <input type="number" class="form-control" id="quantity" value="1" onchange="changeQuantity()">
+                        <input type="number" class="form-control" id="quantity" value="1" min="1" onchange="changeQuantity()">
                     </div>
                     <a class="btn btn-warning" id="add" href="{{ path('cart_add', {id: product.id, quantity:1 }) }}">Añadir a la cesta</a>
                 </form>
@@ -28,20 +28,14 @@
             var regex = new RegExp(/\d+/);
             let route = document.getElementById('add').getAttribute('href');
             route = route.split("/");
-            route[4] = order_quantity;
+            if(order_quantity>0){
+                route[4] = order_quantity;
+            }else{
+                route[4] = 1;
+            }
             route = route.join("/")
             document.getElementById('add').setAttribute('href',route);
             console.log(order_quantity);
-
-            //AJAX FALTA TERMINAR
-            /*if(regex.test(order_quantity)){
-                $.ajax({
-                  url: route,
-                  method: "POST"
-
-                }).done(function (resp) {
-                });
-            }*/
         }
 
     </script>
