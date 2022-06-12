@@ -44,6 +44,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $city;
 
+    #[ORM\Column(type: 'integer')]
+    private $admin;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,6 +185,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?string
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(string $admin): self
+    {
+        $this->admin = $admin;
 
         return $this;
     }

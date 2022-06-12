@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zona de administración{% endblock %}
+{% block header %}{% endblock %}
+{% block body %}
+<div class="container" style="margin-top: 20px;border-radius: 8px;border: 1px solid #dedede;margin-left: auto;padding:0">
+<h1>Crear producto</h1>
+    <div class="card">
+        <form method="post" action={{ path('create_product') }}>
+            <div class="form-group">
+              <label or="model">Modelo</label>
+              <input id="model" name="model" class="form-control" type="text" maxlength="255">
+            </div>
+            <div class="form-group">
+              <label or="price">Precio</label>
+              <input id="price" name="price" class="form-control" type="number">
+            </div>
+            <div class="form-group">
+              <label or="brand">Marca</label>
+              <input id="brand" name="brand" class="form-control" type="text" maxlength="255">
+            </div>
+            <div class="form-group">
+              <label or="description">Descripción</label>
+              <input id="description" name="description" class="form-control" type="text" >
+            </div>
+            <div class="form-group">
+              <label or="banner">Imagen</label>
+              <input id="banner" name="banner" class="form-control" type="text">
+            </div>
+            <div class="form-group">
+              <label or="stock">Stock</label>
+              <input id="stock" name="stock" class="form-control" type="text">
+            </div>
+            <input type="submit" class="btn btn-success btn-sm" value="Crear">
+        </form>
+    </div>
+</div>
+{% endblock %}
