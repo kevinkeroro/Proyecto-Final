@@ -11,7 +11,7 @@
           <span class="visa"></span>
           <span class="mastercard"></span>
       </div>
-      <form>
+      <form action={{ path('cart_pay')}} method="post">
           <div class="form-group">
               <label for="PaymentAmount">Cantidad a pagar</label>
               <div class="amount-placeholder">
@@ -20,30 +20,28 @@
               </div>
           </div>
           <div class="form-group">
-              <label or="NameOnCard">Titular de la tarjeta</label>
-              <input id="NameOnCard" class="form-control" type="text" maxlength="255"></input>
+              <label or="nameOnCard">Titular de la tarjeta</label>
+              <input id="nameOnCard" name="nameOnCard" class="form-control" type="text" maxlength="255"></input>
           </div>
           <div class="form-group">
-              <label for="CreditCardNumber">Número de tarjeta</label>
-              <input id="CreditCardNumber" class="null card-image form-control" type="text"></input>
+              <label for="creditCardNumber">Número de tarjeta</label>
+              <input id="creditCardNumber" name="creditCardNumber" class="null card-image form-control" type="text"></input>
           </div>
           <div class="expiry-date-group form-group">
-              <label for="ExpiryDate">Fecha de vencimiento</label>
-              <input id="ExpiryDate" class="form-control" type="text" placeholder="MM / YY" maxlength="7"></input>
+              <label for="expiryDate">Fecha de vencimiento</label>
+              <input id="expiryDate" name="expiryDate" class="form-control" type="text" placeholder="MM / YY" maxlength="7"></input>
           </div>
           <div class="security-code-group form-group">
-              <label for="SecurityCode">Código de seguridad (CVC)</label>
+              <label for="securityCode">Código de seguridad (CVC)</label>
               <div class="input-container" >
-                  <input id="SecurityCode" class="form-control" type="text" ></input>
+                  <input id="securityCode" name="securityCode" class="form-control" type="text" ></input>
                   <i id="cvc" class="fa fa-question-circle"></i>
               </div>
           </div>
-          <a href="{{ path('cart_pay')}}">
           <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit">
               <span class="submit-button-lock"></span>
               <span class="align-middle">Pagar {{total}}€</span>
           </button>
-          </a>
       </form>
   </div>
 </div>

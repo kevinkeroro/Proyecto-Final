@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pedido{% endblock %}
+{% block body %}
+<div class="container" style="margin-top: 20px;border-radius: 8px;border: 1px solid #dedede;margin-left: auto;padding:0">
+    <h1>Pedido</h1>
+    <div class="card">
+    {% for product in products %}
+    <p> Modelo: {{product.model}} => Cantidad: {{product.quantity}}</p>
+    {% endfor %}
+    </div>
+    <a class="btn btn-success btn-sm" href={{path('app_profile')}}>Volver</a>
+</div>
+{% endblock %}

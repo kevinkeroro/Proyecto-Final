@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ product.name }}{% endblock %}
+{% block title %}{{ product.model }}{% endblock %}
 {% block body %}
     <div class="container">
         <div class="row mt-3 mb-4">
             <div class="col-md-4">
-                <img src="{{ asset(product.banner) }}" alt="{{ product.name }}" class="img-fluid">
+                <img src="{{ asset(product.banner) }}" alt="{{ product.model }}" class="img-fluid">
             </div>
             <div class="col-md-8">
-                <h1 class="mt-4 mt-md-0">{{ product.name }}</h1>
+                <h1 class="mt-4 mt-md-0">{{ product.model }}</h1>
                 <h2>{{ product.price }} €</h2>
                 <hr>
                 <b>Description: </b>{{ product.description }}

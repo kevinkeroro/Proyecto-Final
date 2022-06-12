@@ -32,6 +32,9 @@ class Order
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $order_date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Order
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getOrderDate(): ?string
+    {
+        return $this->order_date;
+    }
+
+    public function setOrderDate(string $order_date): self
+    {
+        $this->order_date = $order_date;
 
         return $this;
     }

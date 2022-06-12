@@ -20,7 +20,7 @@ class Product
     private $price;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private $brand;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
@@ -30,9 +30,6 @@ class Product
 
     #[ORM\Column(type: 'integer')]
     private $stock;
-
-    #[ORM\Column(type: 'array')]
-    private $images = [];
 
     public function getId(): ?int
     {
@@ -63,14 +60,14 @@ class Product
         return $this;
     }
 
-    public function getName(): ?string
+    public function getBrand(): ?string
     {
-        return $this->name;
+        return $this->brand;
     }
 
-    public function setName(string $name): self
+    public function setBrand(string $brand): self
     {
-        $this->name = $name;
+        $this->brand = $brand;
 
         return $this;
     }
@@ -107,18 +104,6 @@ class Product
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
-
-        return $this;
-    }
-
-    public function getImages(): ?array
-    {
-        return $this->images;
-    }
-
-    public function setImages(array $images): self
-    {
-        $this->images = $images;
 
         return $this;
     }
