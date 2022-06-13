@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Repository\OrderRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,6 +66,70 @@ class AdminController extends AbstractController
                     return $this->redirectToRoute('admin_create');
                 }
                 
+            }
+            else{
+                return $this->redirectToRoute('app_home');
+            }
+        }else{
+            return $this->redirectToRoute('app_home');
+        }
+    }
+
+    #[Route('/admin/orders', name: 'admin_orders')]
+    public function loadOrders(OrderRepository $orderRepository): Response{
+        $user = $this->getUser();
+        if($user !== null){
+            if($user->getAdmin()==1){
+                $orders = $orderRepository->findAll();
+                return $this->render('admin/orders.html.twig',[
+                    'orders'=>$orders
+                ]);
+            }
+            else{
+                return $this->redirectToRoute('app_home');
+            }
+        }else{
+            return $this->redirectToRoute('app_home');
+        }
+    }
+
+    #[Route('/admin/order/edit/{id}', name: 'admin_edit_order')]
+    public function editOrder(OrderRepository $orderRepository,$id): Response{
+        $user = $this->getUser();
+        if($user !== null){
+            if($user->getAdmin()==1){
+                $order = $orderRepository->findOneBy(['id'=>$id]);
+                return $this->render('admin/orderEdit.html.twig',[
+                    'order'=>$order
+                ]);
+            }
+            else{
+                return $this->redirectToRoute('app_home');
+            }
+        }else{
+            return $this->redirectToRoute('app_home');
+        }
+    }
+
+    #[Route('/admin/order/edit/save/{id}', name: 'admin_edit_order_save')]
+    public function saveOrder(OrderRepository $orderRepository,$id,ManagerRegistry $doctrine): Response{
+        $user = $this->getUser();
+        if($user !== null){
+            if($user->getAdmin()==1){
+                if(isset($_POST['address']) && isset($_POST['city']) && isset($_POST['status'])){
+                    $order = $orderRepository->findOneBy(['id'=>$id]);
+                    $entityManager =  $doctrine->getManager();
+                    $order->setAddress($_POST['address']);
+                    $order->setCity($_POST['city']);
+                    $order->setStatus($_POST['status']);
+                    $entityManager->persist($order);
+                    $entityManager->flush();
+
+                    return $this->redirectToRoute('admin_orders');
+                }else{
+                    return $this->redirectToRoute('admin_edit_order');
+                }
+
             }
             else{
                 return $this->redirectToRoute('app_home');

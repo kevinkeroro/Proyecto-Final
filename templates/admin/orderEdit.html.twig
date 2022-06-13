@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zona de administración{% endblock %}
+{% block header %}{% endblock %}
+{% block body %}
+<div class="container" style="margin-top: 20px;border-radius: 8px;border: 1px solid #dedede;margin-left: auto;padding:0">
+<h1>Editar pedido</h1>
+    <div class="card">
+        <form method="post" action={{ path('admin_edit_order_save',{id:order.id}) }}>
+            <div class="form-group">
+              <label or="address">Dirección</label>
+              <input id="address" name="address" class="form-control" type="text" maxlength="255" value={{order.address}}>
+            </div>
+            <div class="form-group">
+              <label or="city">Ciudad</label>
+              <input id="city" name="city" class="form-control" type="text" value={{order.city}}>
+            </div>
+            <div class="form-group">
+              <label or="status">Estado</label>
+              <input id="status" name="status" class="form-control" type="text" maxlength="255" value={{order.status}}>
+            </div>
+            <input type="submit" class="btn btn-success btn-sm" value="Guardar">
+        </form>
+    </div>
+    <br>
+    <a class="btn btn-success btn-sm" href={{path('admin_orders')}}>Volver</a>
+</div>
+{% endblock %}

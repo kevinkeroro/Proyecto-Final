@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zona de administración{% endblock %}
+{% block header %}{% endblock %}
+{% block body %}
+<div class="container" style="margin-top: 20px;border-radius: 8px;border: 1px solid #dedede;margin-left: auto;padding:0">
+<h1>Pedidos</h1>
+    
+    {% for order  in orders %}
+    <div class="card mb-3">
+    <table>
+        <tr>
+            <th>Número del pedido</th>
+            <th>Id del usuario</th>
+            <th>Fecha del pedido realizado</th>
+            <th>Dirección</th>
+            <th>Ciudad</th>
+            <th>Estado del pedido</th>
+            <th>Valor del pedido</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>{{order.id}}</td>
+            <td>{{order.userId}}</td>
+            <td>{{order.orderDate}}</td>
+            <td>{{order.address}}</td>
+            <td>{{order.city}}</td>
+            <td>{{order.status}}</td>
+            <td>{{order.totalPrice}}€</td>
+            <td><a class="btn btn-success btn-sm" href={{path('admin_edit_order',{id:order.id})}}>Editar</a></td>
+        </tr>
+    </table>
+    </div>
+    {% endfor %}
+
+    <a class="btn btn-success btn-sm" href={{path('app_admin')}}>Volver</a>
+
+</div>
+{% endblock %}
