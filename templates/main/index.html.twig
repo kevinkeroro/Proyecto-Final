@@ -2,22 +2,24 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="mt-3 mb-4">Products</h1>
+    <h1 class="mt-3 mb-4">Productos</h1>
     <div class="row gy-4">
         {% for product in products %}
-            <div class="col-md-4">
-            <a href="{{ path('app_product', {id: product.id}) }} " class="text-decoration-none">
-                <div class="card mb-4 h-100">
-                    <img src="{{ asset(product.banner) }}" alt="{{ product.model }}" class="card-img-top">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-item-center">
-                            <h5 class="card-title">{{ product.model }}</h5>
-                            <span class="h5 mt-auto">{{ product.price }} €</span>
+            {% if product.stock > 0 %}
+                <div class="col-md-4">
+                <a href="{{ path('app_product', {id: product.id}) }} " class="text-decoration-none">
+                    <div class="card mb-4 h-100">
+                        <img src="{{ asset(product.banner) }}" alt="{{ product.model }}" class="card-img-top">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-item-center">
+                                <h5 class="card-title">{{ product.model }}</h5>
+                                <span class="h5 mt-auto">{{ product.price }} €</span>
+                            </div>
                         </div>
                     </div>
+                </a>
                 </div>
-            </a>
-            </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>

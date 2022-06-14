@@ -134,7 +134,7 @@ class CartController extends AbstractController
             return $this->redirectToRoute('app_home');
          }
         if(!empty($_POST['nameOnCard']) && preg_match('/\d{16}/',$_POST['creditCardNumber'])  && preg_match('/\d{2}\/\d{2}/',$_POST['expiryDate']) && preg_match('/\d{3}/',$_POST['securityCode']) ){
-
+            $entityManager = $doctrine->getManager();
             $cart = $session->get('cart',[]);
             $cartData = [];
 
@@ -148,7 +148,10 @@ class CartController extends AbstractController
             $total = 0;
             foreach($cartData as $item){
                 $totalItem = $item['product']->getPrice() * $item['quantity'];
+                $item['product']->setStock($item['product']->getStock() - $item['quantity']);
                 $total+=$totalItem;
+                $entityManager->persist($item['product']);
+                $entityManager->flush();
             }
 
             foreach($cart as $id => $quantity){
@@ -161,7 +164,7 @@ class CartController extends AbstractController
             // $date=new \DateTimeInterface();
             $date = new DateTime();
             $order_date = $date->format('Y-m-d');
-            $entityManager = $doctrine->getManager();
+            // $entityManager = $doctrine->getManager();
             $order = new Order();
             $order->setStatus("realizado");
             $order->setProduct($order_products);
