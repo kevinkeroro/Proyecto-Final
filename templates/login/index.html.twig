@@ -11,10 +11,6 @@
 {% endblock %}
 
 {% block body %}
-    {# TODO CHANGE COLOR FLASH AND A NEW FLASH WHEN A USER IN NOT VERIFIED #}
-    {% for flash_error in app.flashes('success') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
 
 	<div class="section">
 		<div class="container">

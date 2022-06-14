@@ -49,26 +49,25 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
 
-            $email = (new Email())
-                ->from('admin@topphone.com')
-                ->to($user->getEmail())
-                ->subject('Confirma tu email')
-                ->text("asf");
-                // ->html('registration/confirmation_email.html.twig');
-            $mailer->send($email);
-            // generate a signed url and email it to the user
-            //     $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            //     (new TemplatedEmail())
-            //         ->from('admin@admin.com')
-            //         ->to($user->getEmail())
-            //         ->subject('Please Confirm your Email')
-            //         ->htmlTemplate('registration/confirmation_email.html.twig')
-            // );
+            // // $email = (new Email())
+            // //     ->from('admin@topphone.com')
+            // //     ->to($user->getEmail())
+            // //     ->subject('Confirma tu email')
+            // //     ->text("asf");
+            //     // ->html('registration/confirmation_email.html.twig');
+            // // $mailer->send($email);
+            // // generate a signed url and email it to the user
+            // //     $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            // //     (new TemplatedEmail())
+            // //         ->from('admin@admin.com')
+            // //         ->to($user->getEmail())
+            // //         ->subject('Please Confirm your Email')
+            // //         ->htmlTemplate('registration/confirmation_email.html.twig')
+            // // );
 
 
-            //FIXME: NO SE ENVIA EL EMAIL 
-            // do anything else you need here, like send an email
-            // $this->addFlash('success', 'Verify your email address');
+            // // do anything else you need here, like send an email
+            // // $this->addFlash('success', 'Verify your email address');
             return $this->redirectToRoute('app_login');
         }
 
@@ -95,31 +94,5 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_register');
-    }
-
-    #[Route('/test/email', name: 'test_email')]
-    public function sendEmail(MailerInterface $mailer)
-    {
-        $email = (new Email())
-	    ->from('mailtrap@example.com')
-		->to('newuser@example.com')
-		->cc('mailtrapqa@example.com')
-		->addCc('staging@example.com')
-		->bcc('mailtrapdev@example.com')
-		->replyTo('mailtrap@example.com')
-		->subject('Best practices of building HTML emails')
- ->text('Hey! Learn the best practices of building HTML emails and play with ready-to-go templates. Mailtrap’s Guide on How to Build HTML Email is live on our blog')
-     ->html('<html>
-<body>
-		<p><br>Hey</br>
-		Learn the best practices of building HTML emails and play with ready-to-go templates.</p>
-		<p><a href="/blog/build-html-email/">Mailtrap’s Guide on How to Build HTML Email</a> is live on our blog</p>
-		<img src="cid:logo"> ... <img src="cid:new-cover-image">
-				</body>
-			</html>')
-->attachFromPath('/path/to/offline-guide.pdf');
-
-        $mailer->send($email);
-        return $this->redirectToRoute('app_home');
     }
 }
