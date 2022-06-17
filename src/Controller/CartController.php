@@ -183,7 +183,7 @@ class CartController extends AbstractController
             unset($cart);
             $session->set('cart',[]);
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_profile');
         }else{
             return $this->redirectToRoute('cart_pay');
         }

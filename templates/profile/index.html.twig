@@ -8,7 +8,7 @@
   {% if orders | length > 0 %}
     {% for order in orders %}
     <div class="card">
-    Número de pedido:{{order.id}} || Fecha del pedido: {{order.orderdate}} || Dirección: {{order.address}} || Precio: {{order.totalprice}} || Estado del pedido: {{order.status}}  <a class="btn-success btn-sm" href={{path('app_order',{id: order.id})}}>Contenido</a>
+    Número de pedido:{{order.id}} || Fecha del pedido: {{order.orderdate}} || Dirección: {{order.address}} || Precio: {{order.totalprice}} € || Estado del pedido: {{order.status}}  <a class="btn-success btn-sm" href={{path('app_order',{id: order.id})}}>Contenido</a>
     </div>
     {% endfor %}
   {% else %}
